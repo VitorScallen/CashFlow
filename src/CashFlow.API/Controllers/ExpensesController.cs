@@ -14,7 +14,7 @@ namespace CashFlow.API.Controllers
             var useCase = new RegisterExpensesUseCase();
 
             var response = useCase.Execute(registerExpenseJson);
-            return Ok("This is the Expenses API");
+            return Created(string.Empty, response);
         }
     }
 }

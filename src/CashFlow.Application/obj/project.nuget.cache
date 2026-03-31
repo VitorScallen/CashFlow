@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "w04UZBIrguY=",
+  "dgSpecHash": "14tnzS+wZPc=",
   "success": true,
   "projectFilePath": "C:\\Estudos\\Rocketseat\\.NET\\DDD - introducaoAPI\\CashFlow\\src\\CashFlow.Application\\CashFlow.Application.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\scall\\.nuget\\packages\\fluentvalidation\\12.1.1\\fluentvalidation.12.1.1.nupkg.sha512"
+  ],
   "logs": []
 }
