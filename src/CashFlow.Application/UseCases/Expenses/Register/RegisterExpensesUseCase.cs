@@ -6,7 +6,7 @@ namespace CashFlow.Application.UseCases.Expenses.Register
 {
     public class RegisterExpensesUseCase
     {
-        public ResponsesRegisterExpenseJson Execute(RequestRegisterExpenseJson request)
+        public ResponsesRegisterExpenseJson Execute(RequestExpenseJson request)
         {
             Validate(request);
 
@@ -17,7 +17,7 @@ namespace CashFlow.Application.UseCases.Expenses.Register
 
         }
 
-        private void Validate(RequestRegisterExpenseJson request)
+        private void Validate(RequestExpenseJson request)
         {
             var validator = new ExpenseValidator();
 
