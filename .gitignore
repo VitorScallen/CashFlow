@@ -118,6 +118,8 @@ ipch/
 *.vspx
 *.sap
 
+*.cache
+
 # Visual Studio Trace Files
 *.e2e
 
