@@ -9,12 +9,11 @@ namespace CashFlow.API.Controllers
     public class ExpensesController : ControllerBase
     {
         [HttpPost]
-        public IActionResult Register(
+        public async Task<IActionResult> Register(
             [FromServices] IRegisterExpensesUseCase registerExpensesUseCase,
             [FromBody] RequestExpenseJson registerExpenseJson)
         {
-
-            var response = registerExpensesUseCase.Execute(registerExpenseJson);
+            var response = await registerExpensesUseCase.Execute(registerExpenseJson);
 
             return Created(string.Empty, response);
         }
