@@ -16,6 +16,8 @@ builder.Services.AddApplication();
 
 var app = builder.Build();
 
+app.Services.InitializeDatabase();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
