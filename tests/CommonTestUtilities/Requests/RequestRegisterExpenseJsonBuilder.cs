@@ -4,11 +4,11 @@ using CashFlow.Communication.Register;
 
 namespace CommonTestUtilities.Requests
 {
-    public class RequestExpenseJsonBuilder
+    public class RequestRegisterExpenseJsonBuilder
     {
-        public RequestExpenseJson Build()
+        public RequestRegisterExpenseJson Build()
         {
-            return new Faker<RequestExpenseJson>()
+            return new Faker<RequestRegisterExpenseJson>()
             .RuleFor(r => r.Title, faker => faker.Commerce.ProductName())
             .RuleFor(r => r.Description, faker => faker.Commerce.ProductDescription())
             .RuleFor(r => r.Date, faker => faker.Date.Past())

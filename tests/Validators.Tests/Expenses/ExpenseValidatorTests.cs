@@ -20,7 +20,7 @@ namespace Validators.Tests.Expenses
         {
             //Arrange
             var validator = new ExpenseValidator();
-            var request = new RequestExpenseJsonBuilder().Build();
+            var request = new RequestRegisterExpenseJsonBuilder().Build();
 
             //Act
             var result = validator.Validate(request);
@@ -37,7 +37,7 @@ namespace Validators.Tests.Expenses
         {
             //Arrange
             var validator = new ExpenseValidator();
-            var request = new RequestExpenseJsonBuilder().Build();
+            var request = new RequestRegisterExpenseJsonBuilder().Build();
             request.Title = title;
 
             //Act
@@ -53,7 +53,7 @@ namespace Validators.Tests.Expenses
         {
             //Arrange
             var validator = new ExpenseValidator();
-            var request = new RequestExpenseJsonBuilder().Build();
+            var request = new RequestRegisterExpenseJsonBuilder().Build();
             request.Date = DateTime.UtcNow.AddDays(1);
 
             //Act
@@ -69,7 +69,7 @@ namespace Validators.Tests.Expenses
         {
             //Arrange
             var validator = new ExpenseValidator();
-            var request = new RequestExpenseJsonBuilder().Build();
+            var request = new RequestRegisterExpenseJsonBuilder().Build();
             request.PaymentType = (PaymentTypeEnum)700;
 
             //Act
@@ -89,7 +89,7 @@ namespace Validators.Tests.Expenses
         {
             //Arrange
             var validator = new ExpenseValidator();
-            var request = new RequestExpenseJsonBuilder().Build();
+            var request = new RequestRegisterExpenseJsonBuilder().Build();
             request.Amount = amount;
 
             //Act
