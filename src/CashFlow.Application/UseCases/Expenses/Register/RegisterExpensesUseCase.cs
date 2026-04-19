@@ -16,7 +16,7 @@ namespace CashFlow.Application.UseCases.Expenses.Register
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<ResponsesRegisterExpenseJson> Execute(RequestExpenseJson request)
+        public async Task<ResponsesExpensesJson> Execute(RequestExpenseJson request)
         {
             Validate(request);
 
@@ -32,7 +32,7 @@ namespace CashFlow.Application.UseCases.Expenses.Register
             await _repository.AddAsync(entity);
             await _unitOfWork.CommitAsync();
 
-            return new ResponsesRegisterExpenseJson();
+            return new ResponsesExpensesJson();
 
         }
 

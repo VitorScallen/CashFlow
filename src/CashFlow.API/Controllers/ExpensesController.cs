@@ -1,5 +1,8 @@
-﻿using CashFlow.Application.UseCases.Expenses.Register;
+﻿using CashFlow.Application.UseCases.Expenses.GetAll;
+using CashFlow.Application.UseCases.Expenses.GetById;
+using CashFlow.Application.UseCases.Expenses.Register;
 using CashFlow.Communication.Register;
+using CashFlow.Communication.Responses;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CashFlow.API.Controllers
@@ -16,6 +19,33 @@ namespace CashFlow.API.Controllers
             var response = await registerExpensesUseCase.Execute(registerExpenseJson);
 
             return Created(string.Empty, response);
+        }
+
+        [HttpGet]
+        [ProducesResponseType(typeof(ResponsesExpensesJson), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> GetAllAsyncExpenses(
+            [FromServices] IGetAllExpenseUseCase getAllExpensesUseCase)
+        {
+            var response = await getAllExpensesUseCase.Execute();
+
+            if (response.Expenses.Count != 0)
+                return Ok(response);
+
+            return NoContent();
+        }
+
+        [HttpGet]
+        [Route("{id}")]
+        [ProducesResponseType(typeof(ResponsesExpensesJson), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetById(
+            [FromServices] IGetByIdExpenseUseCase useCase,
+            [FromRoute] long id)
+        {
+            var response = await useCase.Execute(id);
+        
+            return Ok(response);
         }
     }
 }
