@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "AjSmvUj3v7o=",
+  "dgSpecHash": "UVbFVzGBU0k=",
   "success": true,
-  "projectFilePath": "C:\\Estudos\\Rocketseat\\.NET\\DDD - introducaoAPI\\CashFlow\\src\\CashFlow.Domain\\CashFlow.Domain.csproj",
+  "projectFilePath": "/home/vitor-scallen/Documentos/Estudos/Rocketseat/DotNet/CashFlow/src/CashFlow.Domain/CashFlow.Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

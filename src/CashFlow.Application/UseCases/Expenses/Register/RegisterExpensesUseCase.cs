@@ -23,7 +23,11 @@ namespace CashFlow.Application.UseCases.Expenses.Register
             _mapper = mapper;
         }
 
+<<<<<<< HEAD
         public async Task<ResponsesRegisterExpenseJson> Execute(RequestRegisterExpenseJson request)
+=======
+        public async Task<ResponsesExpensesJson> Execute(RequestExpenseJson request)
+>>>>>>> e74bd3660e971cf9960841b86672c81d49622655
         {
             Validate(request);
 
@@ -32,7 +36,11 @@ namespace CashFlow.Application.UseCases.Expenses.Register
             await _repository.AddAsync(entity);
             await _unitOfWork.CommitAsync();
 
+<<<<<<< HEAD
             return _mapper.Map<ResponsesRegisterExpenseJson>(entity);
+=======
+            return new ResponsesExpensesJson();
+>>>>>>> e74bd3660e971cf9960841b86672c81d49622655
 
         }
 

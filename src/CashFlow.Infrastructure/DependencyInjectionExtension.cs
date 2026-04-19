@@ -24,9 +24,17 @@ public static class DependencyInjectionExtension
 
     private static void AddDbContext(IServiceCollection services, IConfiguration config)
     {
-        var connectionString = config.GetConnectionString("Connection"); ;
+        var connectionString = config.GetConnectionString("Connection");
         var serverVersion = new MySqlServerVersion(new Version(8, 0, 45));
 
         services.AddDbContext<CashFlowDbContext>(config => config.UseMySql(connectionString, serverVersion));
+    }
+
+    public static async Task InitializeDatabaseAsync(this IServiceProvider services)
+    {
+        using var scope = services.CreateScope();
+        var dbContext = scope.ServiceProvider.GetRequiredService<CashFlowDbContext>();
+
+        await dbContext.Database.EnsureCreatedAsync();
     }
 }

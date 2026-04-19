@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Tlz5Ki4iZDM=",
+  "dgSpecHash": "McQFtpoGRNY=",
   "success": true,
-  "projectFilePath": "C:\\Estudos\\Rocketseat\\.NET\\DDD - introducaoAPI\\CashFlow\\src\\CashFlow.Communication\\CashFlow.Communication.csproj",
+  "projectFilePath": "/home/vitor-scallen/Documentos/Estudos/Rocketseat/DotNet/CashFlow/src/CashFlow.Communication/CashFlow.Communication.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
