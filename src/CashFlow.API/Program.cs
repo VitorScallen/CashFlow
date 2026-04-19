@@ -16,11 +16,7 @@ builder.Services.AddApplication();
 
 var app = builder.Build();
 
-<<<<<<< HEAD
 app.Services.InitializeDatabase();
-=======
-await app.Services.InitializeDatabaseAsync();
->>>>>>> e74bd3660e971cf9960841b86672c81d49622655
 
 if (app.Environment.IsDevelopment())
 {

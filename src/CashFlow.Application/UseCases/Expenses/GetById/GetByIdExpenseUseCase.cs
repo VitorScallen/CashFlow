@@ -15,10 +15,10 @@ public class GetByIdExpenseUseCase : IGetByIdExpenseUseCase
         _mapper = mapper;
     }
 
-    public async Task<ResponsesExpensesJson> Execute(long id)
+    public async Task<ResponseExpenseJson> Execute(long id)
     {
         var result = await _expenseRepository.GetByIdAsync(id);
 
-        return _mapper.Map<ResponsesExpensesJson>(result);
+        return _mapper.Map<ResponseExpenseJson>(result);
     }
 }

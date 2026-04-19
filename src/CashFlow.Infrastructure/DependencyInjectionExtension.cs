@@ -5,6 +5,7 @@ using CashFlow.Infrastructure.DataAcess.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MySqlConnector;
 
 namespace CashFlow.Infrastructure;
 
@@ -24,17 +25,20 @@ public static class DependencyInjectionExtension
 
     private static void AddDbContext(IServiceCollection services, IConfiguration config)
     {
-        var connectionString = config.GetConnectionString("Connection");
+        var rawConnectionString = config.GetConnectionString("Connection")
+            ?? throw new InvalidOperationException("Connection string 'Connection' não foi encontrada.");
+
+        var connectionStringBuilder = new MySqlConnectionStringBuilder(rawConnectionString);
+
+        if (string.IsNullOrWhiteSpace(connectionStringBuilder.Database))
+        {
+            connectionStringBuilder.Database = "cashflowdb";
+        }
+
+        var connectionString = connectionStringBuilder.ConnectionString;
         var serverVersion = new MySqlServerVersion(new Version(8, 0, 45));
 
-        services.AddDbContext<CashFlowDbContext>(config => config.UseMySql(connectionString, serverVersion));
-    }
-
-    public static async Task InitializeDatabaseAsync(this IServiceProvider services)
-    {
-        using var scope = services.CreateScope();
-        var dbContext = scope.ServiceProvider.GetRequiredService<CashFlowDbContext>();
-
-        await dbContext.Database.EnsureCreatedAsync();
+        services.AddDbContext<CashFlowDbContext>(options =>
+            options.UseMySql(connectionString, serverVersion, mysql => mysql.EnableRetryOnFailure()));
     }
 }
