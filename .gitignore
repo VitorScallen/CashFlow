@@ -24,7 +24,8 @@ x86/
 bld/
 [Bb]in/
 [Oo]bj/
-**/[Bb]in/
+cd "/home/vitor-scallen/Documentos/Estudos/Rocketseat/DotNet/CashFlow"
+git commit -m "chore: ignore and untrack build artifacts (bin/obj)"**/[Bb]in/
 **/[Oo]bj/
 [Ll]og/
 [Ll]ogs/
