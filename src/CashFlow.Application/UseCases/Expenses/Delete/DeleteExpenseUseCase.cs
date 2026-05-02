@@ -7,22 +7,22 @@ namespace CashFlow.Application.UseCases.Expenses.Delete;
 
 public class DeleteExpenseUseCase : IDeleteExpenseUseCase
 {
-    private readonly IExpensesWriteOnlyRepository _repository;
+    private readonly IExpensesWriteOnlyRepository _expensesRepository;
     private readonly IUnitOfWork _unitOfWork;
 
     public DeleteExpenseUseCase(
-        IExpensesWriteOnlyRepository repository,
+        IExpensesWriteOnlyRepository expensesRepository,
         IUnitOfWork unitOfWork)
     {
-        _repository = repository;
+        _expensesRepository = expensesRepository;
         _unitOfWork = unitOfWork;
     }
 
     public async Task Execute(long id)
     {
-        var result = await _repository.DeleteAsync(id);
+        var expenseWasDeleted = await _expensesRepository.DeleteAsync(id);
 
-        if (!result) //eh o mesmo que result == false
+        if (expenseWasDeleted is false)
         {
             throw new NotFoundException(ResourceErrorMessages.EXPENSE_NOT_FOUND);
         }
