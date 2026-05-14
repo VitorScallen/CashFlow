@@ -1,13 +1,27 @@
 using System.Runtime.InteropServices;
 using CashFlow.Domain.Reports;
+using CashFlow.Domain.Repositories.Expenses;
 using ClosedXML.Excel;
 
 namespace CashFlow.Application.UseCases.Reports.Excel;
 
 public class GenerateExpensesReportExcelUseCase : IGenerateExpensesReportExcelUseCase
 {
+    private readonly IExpensesReadOnlyRepository _expensesReadOnlyRepository;
+
+    public GenerateExpensesReportExcelUseCase(IExpensesReadOnlyRepository expensesReadOnlyRepository)
+    {
+        _expensesReadOnlyRepository = expensesReadOnlyRepository;
+    }
+    
     public async Task<byte[]> ExecuteAsync(DateOnly month)
     {
+        var expenses = await _expensesReadOnlyRepository.FilterByMonthAsync(month);
+        if (expenses.Count == 0)
+        {
+            return [];
+        }
+        
         var workBook = new XLWorkbook();
         workBook.Author = "Vitor";
         workBook.Style.Font.FontSize = 12;
